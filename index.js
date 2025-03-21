@@ -5,6 +5,8 @@ var ejs = require('ejs')
 var app = express()
 app.use(express.json())
 
+var gastos = []
+
 app.set('view engine', 'ejs')
 app.set('views', './views')
 
@@ -22,7 +24,22 @@ app.get('/formulario', (req, res) => {
     res.render('formulario')
 })
 
+app.get('/cadastro', function(req, res){
+    var valor = req.query.valor
+    var descricao = req.query.descricao
+    var data = req.query.data
+
+    gastos.push({
+        valor: valor,
+        descricao: descricao,
+        data: data
+    })
+
+    console.log(gastos)
+    res.render('formulario')
+})
+
 
 app.listen(3000, function(){
-    console.log('ta no ar 2')
+    console.log('servidor da mudança 21/03/2025')
 })
