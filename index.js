@@ -40,6 +40,28 @@ app.get('/cadastro', function(req, res){
 })
 
 
+app.post('/cadastro', function(req, res){
+
+    var nome = req.body.nome
+    var salario = req.body.salario
+    var valorEmprestimo = req.body.valorEmprestimo
+
+    console.log(nome, salario, valorEmprestimo)
+
+    if(salario * 0.5 > valorEmprestimo){
+        res.json({
+            status: 'sucesso, pode realizar o empréstimo'
+        })
+    } else {
+        res.json({
+            status: 'Erro, nao é possivel realizar o emprestimo',
+            valorMinimo: salario * 0.5 - 1
+        })
+    }
+
+
+})
+
 app.listen(3000, function(){
     console.log('servidor da mudança 21/03/2025')
 })
